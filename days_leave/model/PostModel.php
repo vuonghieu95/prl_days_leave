@@ -14,7 +14,13 @@ class PostModel
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     }
-
+public function getDataAll(){
+    $conn = $this->connect();
+    $sql = "Select users.*,positions.name as position from users left join positions on users.position_id = positions.id
+left join teams on users.team_id = teams.id where users.del_flag =0";
+    $data = $conn->query($sql);
+    return $data;
+}
     public function getData()
     {
         $conn = $this->connect();

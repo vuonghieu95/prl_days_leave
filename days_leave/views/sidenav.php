@@ -8,32 +8,24 @@
             <div class="hello-info">
                 Hello Administrator
             </div>
+
         </div>
-        <button class="dropdown-btn">TEAM
+        <button class="dropdown-btn">Team Manager
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
             <a href="content.php?team=1">Vinh</a>
             <a href="content.php?team=2">Hoàng</a>
-            <a href="#">Hùng</a>
+            <a href="content.php?team=3">Hùng</a>
             <a href="#">Quý</a>
         </div>
-        <button class="dropdown-btn">TEAM
-            <i class="fa fa-caret-down"></i>
-        </button>
-        <div class="dropdown-container">
-            <a href="#">Vinh</a>
-            <a href="#">Hoàng</a>
-            <a href="#">Hùng</a>
-            <a href="#">Quý</a>
-        </div>
+
         <a href="addteam.php">
             <button>add team</button></a>
     </div>
 
     <div class="content">
-<!--        --><?php //include_once ('content.php')?>
-        <a href="logout.php"><button class="abc" style="float: right">Sign out</button></a>
+
     </div>
 </div>
 

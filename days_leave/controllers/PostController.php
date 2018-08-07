@@ -18,6 +18,13 @@ class PostController
         $postModel->getData();
         return $postModel->getData();
     }
+    public function getPostAll()
+    {
+
+        $postModel = new PostModel();
+        $postModel->getDataAll();
+        return $postModel->getDataAll();
+    }
 
     public function addUser()
     {
