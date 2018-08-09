@@ -20,17 +20,17 @@ if (empty($name) || empty($password) || empty($email) || empty($phone) || empty(
 } else {
     require_once('../controllers/PostController.php');
 
-        $target_dir = "img/";  // thư mục chứa file upload
+    $target_dir = "img/";  // thư mục chứa file upload
 
-        $target_file = $target_dir . basename($_FILES["avatar"]["name"]); // link sẽ upload file lên
+    $target_file = $target_dir . basename($_FILES["avatar"]["name"]); // link sẽ upload file lên
 
-        if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) { // nếu upload file không có lỗi
-            echo "The file " . basename($_FILES["avatar"]["name"]) . " has been uploaded.";
-        } else { // Upload file có lỗi
-            echo "Sorry, there was an error uploading your file.";
-        }
+    if (move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)) { // nếu upload file không có lỗi
+        echo "The file " . basename($_FILES["avatar"]["name"]) . " has been uploaded.";
+    } else { // Upload file có lỗi
+        echo "Sorry, there was an error uploading your file.";
+    }
 
     $postController = new PostController();
     $postController->addUser();
-        header('Location:admin.php');
+    header('Location:admin.php');
 }

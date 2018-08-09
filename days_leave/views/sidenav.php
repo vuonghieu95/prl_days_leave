@@ -1,12 +1,18 @@
+<?php
+require_once('../controllers/PostController.php');
+$postController = new PostController();
+$team = $postController->getTeam();
+$check_role_type = (int)$_SESSION['login']->role_type;
 
+?>
 <div class="container">
     <div class="sidenav">
         <div class="info">
             <div class="icon">
                 <img src="img/user.png" alt="" width="100%", height="100%">
             </div>
-            <div class="hello-info">
-                Hello Administrator
+            <div class="hello-info" style="font-size: 20px">
+                Hello <br> <?php echo $_SESSION['login']->name?>
             </div>
 
         </div>
@@ -14,14 +20,18 @@
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="content.php?team=1">Vinh</a>
-            <a href="content.php?team=2">Hoàng</a>
-            <a href="content.php?team=3">Hùng</a>
-            <a href="#">Quý</a>
+
+            <?php foreach ($team as $row): ?>
+                <a href="content.php?team=<?php echo $row['id']?>"><?php echo $row['name']?></a>
+            <?php endforeach; ?>
         </div>
 
-        <a href="addteam.php">
-            <button>add team</button></a>
+        <button class="dropdown-btn">Days_Leave Manager
+            <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="days_leave.php">Nhân Viên</a>
+        </div>
     </div>
 
     <div class="content">

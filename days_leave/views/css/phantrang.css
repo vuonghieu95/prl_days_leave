@@ -1,0 +1,33 @@
+.phantrang li.single {
+	margin-top: 15px;
+	background-color: #4CAF50;
+	padding: 10px;
+	border-radius: 5px;
+	color: #FFF;
+}
+.phantrang li a {
+	color: #FB503B;
+	text-decoration:none;
+}
+li {
+	margin-top:  15px;
+	padding: 1px;
+}
+
+.phantrang li a, .phantrang li a:hover, .phantrang li a.active a {
+	background-color: #FFFFFF;
+	border-radius: 15px;
+	border: 1px solid #477098;
+	cursor: pointer;
+	padding: 4px;
+}
+.phantrang li a:hover,.phantrang li.active a {
+	background-color: #4b6b86;
+	color:#FFFFFF;
+}
+.phantrang li.single {
+	background-color: #007bff;
+}
+.phantrang li a:hover, .phantrang li.active a {
+	background-color: #007bff;
+}

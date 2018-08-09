@@ -7,8 +7,8 @@
  * Time: 14:41
  */
 
+session_start();
 require_once('../model/PostModel.php');
-
 class PostController
 {
     public function getPost()
@@ -18,6 +18,14 @@ class PostController
         $postModel->getData();
         return $postModel->getData();
     }
+
+    public function getTeam()
+    {
+        $postModel = new PostModel();
+        $postModel->getTeam();
+        return $postModel->getTeam();
+    }
+
     public function getPostAll()
     {
 
@@ -35,9 +43,11 @@ class PostController
         $phone = $_POST['phone'];
         $roletype = $_POST['roletype'];
         $team = $_POST['team'];
+        $date = strtotime($_POST['work_start_date']);
+        $work_start = date("Y-m-d H:i:s", $date);
         $position = $_POST['position'];
         $postModel = new PostModel();
-        $postModel->add($name, $password, $email, $avatar, $phone, $roletype, $team, $position);
+        $postModel->add($name, $password, $email, $avatar, $phone, $work_start, $roletype, $team, $position);
     }
 
     public function addTeam()
@@ -66,9 +76,11 @@ class PostController
         $phone = $_POST['phone'];
         $roletype = $_POST['roletype'];
         $team = $_POST['team'];
+        $date = strtotime($_POST['work_start_date']);
+        $work_start = date("Y-m-d H:i:s", $date);
         $position = $_POST['position'];
         $postModel = new PostModel();
-        $postModel->edit($id, $name, $password, $email, $avatar, $phone, $roletype, $team, $position);
+        $postModel->edit($id, $name, $email, $avatar, $phone, $work_start, $roletype, $team, $position);
     }
 
     public function delete()
@@ -78,4 +90,39 @@ class PostController
         $postModel->delete($id);
     }
 
+    public function getDays_Leave()
+    {
+        $postModel = new PostModel();
+        $postModel->getDays();
+        return $postModel->getDays();
+    }
+
+    public function getUserID()
+    {
+        include_once('../tachchuoi/Message.php');
+        $message = new Message();
+        $x = $message->process();
+        $userName = $x['sender'];
+        $ngay = strtotime($x['date']);
+        $date = date('Y-m-d', $ngay);
+        //$date = DateTime::createFromFormat('Y-m-d',$ngay )->format('Y-m-d');
+
+        $date = date_create($x['date']);
+        $date = date_format($date, "Y-m-d");
+
+        $reason = $x['reason'];
+        $postModel = new PostModel();
+        $postModel->addDayLeave($userName, $date, $reason);
+    }
+
+    public function addDays_leave()
+    {
+        $name = $_POST['name'];
+        $date_leave = $_POST['work_start_date'];
+        $note = $_POST['description'];
+        var_dump($_SESSION['login']->name);die();
+        $postModel = new PostModel();
+        $postModel->addDayLeave($name, $date_leave, $note);
+
+    }
 }
