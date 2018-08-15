@@ -24,13 +24,10 @@
         <label for="description"><b>Description</b></label>
         <input type="text" placeholder="Enter description" name="description" required>
 
-        <label>
-            <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-        </label>
-
         <div class="clearfix">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <button type="submit" class="signupbtn">Add</button>
+            <button type="submit" class="signupbtn" onclick="return  confirm('Are you sure you want to add this team?');">Add</button>
+            <a href='javascript: history.go(-1)'> <button type="button" class="cancelbtn">Cancel</button></a>
+
         </div>
     </div>
 </form>

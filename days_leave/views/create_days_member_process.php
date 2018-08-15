@@ -6,7 +6,7 @@
  * Time: 17:06
  */
 session_start();
-$name = $_SESSION['login']->name;
+$name = $_POST['name'];
 $date_leave = $_POST['work_start_date'];
 $note = $_POST['description'];
 if (empty($name)|| empty($date_leave) || empty($note)){
@@ -15,6 +15,6 @@ if (empty($name)|| empty($date_leave) || empty($note)){
 }else {
     require_once ('../controllers/PostController.php');
     $postController = new PostController();
-    $postController ->addDays_leave();
+    $postController ->addDays_leave_admin();
     header("Location: days_leave.php");
 }

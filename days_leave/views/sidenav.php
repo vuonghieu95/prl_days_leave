@@ -7,12 +7,14 @@ $check_role_type = (int)$_SESSION['login']->role_type;
 ?>
 <div class="container">
     <div class="sidenav">
+
         <div class="info">
             <div class="icon">
-                <img src="img/user.png" alt="" width="100%", height="100%">
+                <img src="<?php echo $_SESSION['login']->avatar?>" style="border-radius: 60px" alt="" width="70px", height="70px">
             </div>
             <div class="hello-info" style="font-size: 20px">
-                Hello <br> <?php echo $_SESSION['login']->name?>
+                Hello: <?php echo $_SESSION['login']->name?><br>
+                    <i class="fa fa-circle text-success" style="text-decoration: none"></i> Online
             </div>
 
         </div>
@@ -32,10 +34,6 @@ $check_role_type = (int)$_SESSION['login']->role_type;
         <div class="dropdown-container">
             <a href="days_leave.php">Nhân Viên</a>
         </div>
-    </div>
-
-    <div class="content">
-
     </div>
 </div>
 

@@ -1,0 +1,31 @@
+.dropdown-toggle {
+    float: right
+}
+
+.header {
+    float: right;
+    margin-right: 22px;
+    margin-top: 5px;
+    background: greenyellow;
+}
+
+.home-header {
+    float: right;
+}
+
+.user-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    float: left;
+}
+
+.hidden-xs {
+    float: left;
+    margin-top: 5px;
+}
+.header-main {
+    margin-top: 15px;
+    float: left;
+    width: 70%;
+}

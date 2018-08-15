@@ -23,8 +23,8 @@ if (empty($name) || empty($description) ) {
     } else { // Upload file có lỗi
         echo "Sorry, there was an error uploading your file.";
     }
-
     $postController = new PostController();
     $postController->addTeam();
-    header('Location:admin.php');
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+
 }

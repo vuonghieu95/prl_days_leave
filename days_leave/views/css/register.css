@@ -57,3 +57,6 @@ clear: both;
 display: table;
 }
 
+.description {
+    width: 100% !important;
+}

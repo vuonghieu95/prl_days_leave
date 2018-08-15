@@ -6,7 +6,7 @@
  * Time: 09:45
  */
 
-$config = require_once ('../config/config3.php');
+$config = require_once ('../config/config.php');
 
 function getConfig($key, $default = null) {
     global $config;

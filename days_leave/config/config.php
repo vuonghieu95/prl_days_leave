@@ -15,4 +15,5 @@ return [
     'leader' => [
         'role_type' => 3
     ],
+
 ];

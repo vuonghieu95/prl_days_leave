@@ -1,19 +1,45 @@
-<?php session_start(); ?><?php
-include_once('header.php');
-include_once('sidenav.php');
+<?php
+session_start();
+include_once ('html.php');
+include_once ('header.php');
+include_once ('sidenav.php');
 require_once('../controllers/PostController.php');
 $postController = new PostController();
-$data = $postController->getPost();
-$team = $postController->getTeam();
-$check_role_type = (int)$_SESSION['login']->role_type;
+$data=$postController->getPost();
 ?>
+<link rel="stylesheet" href="css/phantrang.css">
 <link rel="stylesheet" href="css/content.css">
-<div class="content" >
-    <a href="register.php">
+<h1> TEAM <?php ?></h1>
+<div class="content">
+    <?php if ($check_role_type == 2 || $check_role_type == 3) { ?>
+    <a href="create.php">
         <button class="button" style="background:#4CAF50;border-radius: 10px; padding: 5px 10px; font-size: 20px">Create</button>
     </a>
-
-    <table id="customers">
+<?php }?>
+<!--    <div class="dropdown" id="position" style="float: right; margin-right: 50px">-->
+<!--        <span>Position</span>-->
+<!--        <div class="dropdown-content">-->
+<!--            <form action="?action=search" method="get">-->
+<!--                <input type="hidden" value="" name="manager" placeholder="Search...">-->
+<!--                <button type="submit" id="searchsubmit" class="search">Manager</button>-->
+<!--            </form>-->
+<!--            <form action="?action=search" method="get">-->
+<!--                <input type="hidden" value="" name="leader" placeholder="Search...">-->
+<!--                <button type="submit" id="searchsubmit" class="search">Leader</button>-->
+<!--            </form>-->
+<!--            <form action="?action=search" method="get">-->
+<!--                <input type="hidden" value="" name="member" placeholder="Search...">-->
+<!--                <button type="submit" id="searchsubmit" class="search">Member</button>-->
+<!--            </form>-->
+<!---->
+<!--        </div>-->
+<!--    </div>-->
+    <form role="search" action="content.php?action=search" style="float: right;" method="get">
+        <input type="hidden" value="<?php echo $_GET['team']?>" name="team" />
+        <input type="text" value="" name="key" placeholder="Search...">
+        <button type="submit" id="searchsubmit" class="search">search</button>
+    </form>
+    <table id="customers" >
         <tr>
             <th>Avatar</th>
             <th>Name</th>
@@ -33,6 +59,8 @@ $check_role_type = (int)$_SESSION['login']->role_type;
                 <td class="position"><?php echo $row['position'] ?></td>
                 <td class="work_start_date"><?php echo $row['work_start_date']?></td>
                 <td>
+                    <a href="info.php?id=<?php echo $row['id'] ?>"><i class="fa fa-address-book-o"
+                                                                      style="background:#4caf5021;border-radius: 10px; padding: 5px 10px; font-size: 20px"></i></a>
                     <?php if ($check_role_type == 2 || $check_role_type == 3 || $_SESSION['login'] == $row['email']) { ?>
                     <a href="edit.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit" style="background:#4caf5021;border-radius: 10px; padding: 5px 10px; font-size: 20px"></i></a>
                     <?php }?>
@@ -44,6 +72,3 @@ $check_role_type = (int)$_SESSION['login']->role_type;
             </tr>
         <?php endforeach; ?>
     </table>
-    <?php
-    include ('../model/config2.php');
-    include_once('phantrang.php') ?>
