@@ -30,11 +30,11 @@ input[type="text"] {
     padding: 10px 32px;
 }
 
-button#searchsubmit,#create, #position {
+button#search_submit,#create, #position {
     background: #4CAF50;
     border-radius: 10px;
     padding: 5px 10px;
-    font-size: 20px;
+    font-size: 15px;
     color: white;
 }
 td {
@@ -43,8 +43,4 @@ td {
 .content {
     padding-left:  360px;
     padding-right: 15px;
-}
-.content-admin {
-    padding-left:  133px;
-    margin-top: 50px;
 }

@@ -6,14 +6,21 @@
  * Time: 09:37
  */
 return [
-    'admin' => [
-        'role_type' => 2, 'alias' =>'admin'
+ 'team'=> [
+     'Vinh' =>1,
+     'Hoang' =>2,
+     'Hung' =>3,
+     'Tuan' =>4
+ ],
+    'role_type' =>[
+        'Member' =>1,
+        'Leader' =>2,
+        'Admin'=>3
     ],
-    'user' => [
-        'role_type' => 1
-    ],
-    'leader' => [
-        'role_type' => 3
-    ],
+    'position' => [
+        'Member' =>1,
+        'Leader' =>2,
+        'Manager' =>3
+    ]
 
 ];

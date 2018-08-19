@@ -12,17 +12,32 @@
     <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
-<form action="create_days_process.php" method="Post" enctype="multipart/form-data" style="border:1px solid #ccc">
+<?php
+session_start();
+include_once('layouts/html.php');
+?>
+<div class="div" style="width: 100%;height: 100px">
+    <?php include_once('layouts/header.php') ?>
+</div>
+<div class="side-bar" style="float: left;">
+    <?php include_once('layouts/sidenav.php') ?>
+</div>
+<form action="create_days_process.php" method="Post" enctype="multipart/form-data" style="width: 500px;margin-left: 500px">
     <div class="container" style="text-align: center">
         <h1>Register</h1>
         <hr>
-        <label for="work_start"><b>Date_leave</b></label>
+        <label for="work_start"><b>Date leave</b></label>
         <div id="datetimepicker" class="input">
             <input class="add-on" autocomplete="off" type="text" name="work_start_date" style="text-align: center"/>
         </div>
+        <label for="to date"><b>To Date</b></label>
+        <div id="datetimepicker1" class="input">
+            <input class="add-on" autocomplete="off" type="text" name="to_date" style="text-align: center"/>
+        </div>
         <label for="description"><b>Description</b></label>
         <textarea class="description" name="description" rows="5" id="comment" required></textarea>
-        <div class="clearfix">
+        <div class="clear-fix">
+
             <button type="submit" class="signupbtn">Add</button>
             <a href='javascript: history.go(-1)'>
                 <button type="button" class="cancelbtn">Cancel</button>
@@ -40,6 +55,12 @@
 </script>
 <script type="text/javascript">
     $('#datetimepicker').datetimepicker({
+        format: 'yyyy-MM-dd hh:mm:ss',
+        language: 'pt-BR'
+    });
+</script>
+<script type="text/javascript">
+    $('#datetimepicker1').datetimepicker({
         format: 'yyyy-MM-dd hh:mm:ss',
         language: 'pt-BR'
     });

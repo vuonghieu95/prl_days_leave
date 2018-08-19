@@ -8,13 +8,14 @@
 session_start();
 $name = $_POST['name'];
 $date_leave = $_POST['work_start_date'];
+$to_date = $_POST['to_date'];
 $note = $_POST['description'];
 if (empty($name)|| empty($date_leave) || empty($note)){
-    echo "Vui lòng nhập đầy đủ thông tin. <a href='javascript: history.go(-1)'>Trở lại</a>";
+    echo "Please fill full info in this form . <a href='javascript: history.go(-1)'>Back</a>";
     exit;
 }else {
     require_once ('../controllers/PostController.php');
     $postController = new PostController();
-    $postController ->addDays_leave_admin();
+    $postController ->addDaysLeaveAdmin();
     header("Location: days_leave.php");
 }

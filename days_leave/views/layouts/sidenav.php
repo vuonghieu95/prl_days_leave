@@ -16,23 +16,22 @@ $check_role_type = (int)$_SESSION['login']->role_type;
                 Hello: <?php echo $_SESSION['login']->name?><br>
                     <i class="fa fa-circle text-success" style="text-decoration: none"></i> Online
             </div>
-
         </div>
         <button class="dropdown-btn">Team Manager
             <i class="fa fa-caret-down"></i>
         </button>
-        <div class="dropdown-container">
+        <div class="dropdown-container ">
 
             <?php foreach ($team as $row): ?>
-                <a href="content.php?team=<?php echo $row['id']?>"><?php echo $row['name']?></a>
+                <a href="content.php?team=<?php echo $row['id']?>" style="text-decoration: none !important;"><?php echo $row['name']?></a>
             <?php endforeach; ?>
         </div>
 
-        <button class="dropdown-btn">Days_Leave Manager
+        <button class="dropdown-btn">Days Leave Manager
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="days_leave.php">Nhân Viên</a>
+            <a href="days_leave.php" style="text-decoration: none !important;">Employee</a>
         </div>
     </div>
 </div>

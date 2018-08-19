@@ -17,8 +17,8 @@ if (isset($_SESSION['login'])){
 <div class="wrapper">
 <h2>Login Form</h2>
 
-<form action="views/checklogin.php" method="post">
-    <div class="imgcontainer">
+<form action="views/check_login.php" method="post">
+    <div class="img-container">
         <img src="views/img/user.png" alt="Avatar" class="avatar">
     </div>
 

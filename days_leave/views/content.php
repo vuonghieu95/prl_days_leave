@@ -1,14 +1,24 @@
 <?php
 session_start();
-include_once ('html.php');
-include_once ('header.php');
-include_once ('sidenav.php');
+if (!isset($_SESSION['login'])){
+    header('Location: ../index.php');
+}
+include_once('layouts/html.php');
 require_once('../controllers/PostController.php');
 $postController = new PostController();
 $data=$postController->getPost();
 ?>
-<link rel="stylesheet" href="css/phantrang.css">
+
+<link rel="stylesheet" href="css/pagination.css">
 <link rel="stylesheet" href="css/content.css">
+
+<div class="div" style="width: 100%;height: 100px">
+    <?php include_once('layouts/header.php') ?>
+</div>
+<div class="side-bar" style="float: left;">
+    <?php include_once('layouts/sidenav.php') ?>
+</div>
+
 <h1> TEAM <?php ?></h1>
 <div class="content">
     <?php if ($check_role_type == 2 || $check_role_type == 3) { ?>
@@ -16,28 +26,10 @@ $data=$postController->getPost();
         <button class="button" style="background:#4CAF50;border-radius: 10px; padding: 5px 10px; font-size: 20px">Create</button>
     </a>
 <?php }?>
-<!--    <div class="dropdown" id="position" style="float: right; margin-right: 50px">-->
-<!--        <span>Position</span>-->
-<!--        <div class="dropdown-content">-->
-<!--            <form action="?action=search" method="get">-->
-<!--                <input type="hidden" value="" name="manager" placeholder="Search...">-->
-<!--                <button type="submit" id="searchsubmit" class="search">Manager</button>-->
-<!--            </form>-->
-<!--            <form action="?action=search" method="get">-->
-<!--                <input type="hidden" value="" name="leader" placeholder="Search...">-->
-<!--                <button type="submit" id="searchsubmit" class="search">Leader</button>-->
-<!--            </form>-->
-<!--            <form action="?action=search" method="get">-->
-<!--                <input type="hidden" value="" name="member" placeholder="Search...">-->
-<!--                <button type="submit" id="searchsubmit" class="search">Member</button>-->
-<!--            </form>-->
-<!---->
-<!--        </div>-->
-<!--    </div>-->
     <form role="search" action="content.php?action=search" style="float: right;" method="get">
         <input type="hidden" value="<?php echo $_GET['team']?>" name="team" />
-        <input type="text" value="" name="key" placeholder="Search...">
-        <button type="submit" id="searchsubmit" class="search">search</button>
+        <input type="text" value="<?php echo(isset($_GET['key']) ? $_GET['key'] : '') ?>" name="key" placeholder="Search...">
+        <button type="submit" id="search_submit" class="search">search</button>
     </form>
     <table id="customers" >
         <tr>
@@ -46,7 +38,7 @@ $data=$postController->getPost();
             <th>Email</th>
             <th>Phone</th>
             <th>Position</th>
-            <th>Work_start_date
+            <th>Work start date
             <th>Action</th>
         </tr>
         <?php foreach ($data as $row): ?>
@@ -65,10 +57,18 @@ $data=$postController->getPost();
                     <a href="edit.php?id=<?php echo $row['id'] ?>"><i class="fa fa-edit" style="background:#4caf5021;border-radius: 10px; padding: 5px 10px; font-size: 20px"></i></a>
                     <?php }?>
                     <?php if ($check_role_type == 2 || $check_role_type == 3) { ?>
-                        <a href="delete.php?id=<?php echo $row['id'] ?>"><i class="fa fa-trash"onclick="return  confirm('Are you sure you want to delete this item?');"
+                        <a href="delete.php?id=<?php echo $row['id'] ?>"><i class="fa fa-trash" onclick="return  confirm('Are you sure you want to delete this item?');"
                                                                             style="background:#4caf5021;border-radius: 10px; padding: 5px 10px; font-size: 20px"></i></a>
                     <?php } ?>
                 </td>
             </tr>
         <?php endforeach; ?>
     </table>
+
+    <?php
+    include_once ('../helper/Helper.php');
+    include_once ('../model/pagination_team.php');
+    include_once ('pagination.php');
+    ?>
+
+

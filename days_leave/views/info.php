@@ -1,5 +1,9 @@
 <?php session_start();
-include_once('html.php');
+if (!isset($_SESSION['login'])){
+    header('Location: ../index.php');
+}
+
+include_once('layouts/html.php');
 require_once('../controllers/PostController.php');
 $postController = new PostController();
 $data = $postController->getResults(isset($_GET['id'])?$_GET['id']:'');
@@ -8,8 +12,14 @@ if ($data['id']!= $_GET['id']){
 }
 ?>
 <link rel="stylesheet" href="css/info.css">
+<div class="div" style="width: 100%;height: 100px">
+    <?php include_once('layouts/header.php') ?>
+</div>
+<div class="side-bar" style="float: left;">
+    <?php include_once('layouts/sidenav.php') ?>
+</div>
 <div class="header-main" style="float: right">
-    <?php include_once('header.php') ?>
+
 
     <div class="container" >
         <div class="row">
@@ -34,7 +44,5 @@ if ($data['id']!= $_GET['id']){
         </div>
     </div>
 </div>
-<div class="side-bar" style="float: left;">
-    <?php include_once('sidenav.php') ?>
-</div>
+
 </body>

@@ -1,5 +1,9 @@
 <?php
 session_start();
+if (!isset($_SESSION['login'])){
+    header('Location: ../index.php');
+}
+
 require_once('../controllers/PostController.php');
 $postController = new PostController();
 $team = $postController->getTeam();
@@ -52,12 +56,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                            style="text-align: center"/>
                 </div>
 
-                <label for="roletype"><b>Role_Type</b></label><br>
+                <label for="role_type"><b>Role_Type</b></label><br>
                 <tr>
                     <td>
-                        <input checked type="radio" name="roletype" value="1"> Member
-                        <input type="radio" name="roletype" value="2"> Admin
-                        <input type="radio" name="roletype" value="3"> Leader <br><br>
+                        <input checked type="radio" name="role_type" value="1"> Member
+                        <input type="radio" name="role_type" value="2"> Admin
+                        <input type="radio" name="role_type" value="3"> Leader <br><br>
                     </td>
                 </tr>
                 <label for="team"><b>Team</b></label>
@@ -86,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </tr>
             </div>
 
-            <div class="clearfix">
+            <div class="clear-fix">
                 <button type="submit" class="signupbtn">Sign Up</button>
                 <a href='javascript: history.go(-1)'>
                     <button type="button" class="cancelbtn">Cancel</button>
@@ -101,4 +105,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script type="text/javascript"
             src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
     </script>
-<?php include_once('footer.php'); ?>
+<?php include_once('layouts/footer.php'); ?>
