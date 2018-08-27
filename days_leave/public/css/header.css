@@ -1,0 +1,61 @@
+.dropdown-toggle {
+    float: right
+}
+
+.header {
+    float: right;
+    margin-right: 22px;
+    margin-top: 20px;
+}
+
+.home-header {
+    float: right;
+    font-weight: bold;
+    font-family: "Courier New", serif;
+    color: black ;
+}
+
+.user-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    float: left;
+}
+
+.hidden-xs {
+    float: left;
+    margin-top: 5px;
+    font-weight: bold;
+    font-family: "Courier New", serif;
+    color: black;
+}
+
+.header-main {
+    margin-top: 15px;
+    float: left;
+    width: 75%;
+    top: 0;
+}
+
+.logo_header {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin-left: 130px;
+    background: rgba(249, 251, 255, 0.88);
+
+}
+
+.div {
+    background: url("../../views/logo/header.jpg");
+
+}
+
+#title {
+    text-align: center;
+    margin-top: 0;
+    padding-top: 25px;
+    font-weight: bold;
+    font-family: "Courier New", serif;
+    color: black;
+}

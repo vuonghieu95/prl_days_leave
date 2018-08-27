@@ -1,6 +1,6 @@
 <?php
-require_once('../controllers/PostController.php');
-$postController = new PostController();
+require_once(getRootPath('/controllers/AdminController.php'));
+$postController = new AdminController();
 $team = $postController->getTeam();
 $check_role_type = (int)$_SESSION['login']->role_type;
 
@@ -23,7 +23,7 @@ $check_role_type = (int)$_SESSION['login']->role_type;
         <div class="dropdown-container ">
 
             <?php foreach ($team as $row): ?>
-                <a href="content.php?team=<?php echo $row['id']?>" style="text-decoration: none !important;"><?php echo $row['name']?></a>
+                <a href="<?php echo url('admin','contentTeam',['team'=> $row['id']])?>" style="text-decoration: none !important;"><?php echo $row['name']?></a>
             <?php endforeach; ?>
         </div>
 
@@ -31,7 +31,7 @@ $check_role_type = (int)$_SESSION['login']->role_type;
             <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-container">
-            <a href="days_leave.php" style="text-decoration: none !important;">Employee</a>
+            <a href="<?php echo url('daysleave','index')?>" style="text-decoration: none !important;">Employee</a>
         </div>
     </div>
 </div>

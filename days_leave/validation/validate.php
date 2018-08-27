@@ -1,43 +1,66 @@
 <?php
-if (empty($_POST["name"])) {
-    $nameErr = "Name is required";
-} else {
-    $name = $_POST["name"];
-    if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
-        $nameErr = "Only letters and white space allowed";
+
+class Validate
+{
+    protected $_errorMessages = [];
+
+    /**
+     * @return array
+     */
+    public function getErrorMessages()
+    {
+        return $this->_errorMessages;
+    }
+
+    /**
+     * @param $field
+     * @param $errorMessages
+     */
+    public function setErrorMessages($field, $errorMessages)
+    {
+        $this->_errorMessages[$field] = $errorMessages;
+    }
+
+    public function validateName($name)
+    {
+        if (empty($name)) {
+            $this->setErrorMessages('name', "Name is required");
+            return false;
+        }
+        if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+            $this->setErrorMessages('name', "Only letters and white space allowed");
+            return false;
+        }
+        return true;
+    }
+
+    public function validatePhone($phone)
+    {
+        if (empty($phone)) {
+            $this->setErrorMessages('phone', 'Phone is required');
+            return false;
+        }
+        if (!preg_match('/^\+?([0-9]{1,4})\)?[-. ]?([0-9]{9})$/', $phone)) {
+        $this->setErrorMessages('phone','Please enter a valid phone number');
+        return false;
+    }
+        return true;
+    }
+
+    public function validateEmail($email)
+    {
+        if (empty($email)) {
+            $this->setErrorMessages('email', 'Email is required');
+            return false;
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $this->setErrorMessages('email',"Invalid email format");
+            return false;
+        }
+    }
+
+    public function validateParams($params)
+    {
+
     }
 }
-if (empty($_POST['password'])) {
-    $passErr = "Password is required";
-} else {
-    $password = md5($_POST['password']);
-}
-if (empty($_POST["email"])) {
-    $emailErr = "Email is required";
-} else {
-    $email = $_POST["email"];
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailErr = "Invalid email format";
-    }
-    $sql = "Select users.email from users where users.email = '" . $email . "'";
-    $result = $conn->query($sql);
-    $count_email = $result->rowCount();
-    if ($count_email >= 1) {
-        $emailErr = "Email exist";
-    }
-}
-if (empty($_POST["phone"])) {
-    $phoneErr = "Phone is required";
-} else {
-    $phone = $_POST["phone"];
-    if (!preg_match('/^\+?([0-9]{1,4})\)?[-. ]?([0-9]{9})$/', $phone)) {
-        $phoneErr = 'Please enter a valid phone number';
-    }
-}
-if ($_FILES["avatar"]["type"] != "image/gif" || $_FILES["avatar"]["type"] != "image/jpeg" || $_FILES["avatar"]["type"] != "image/jpg" || $_FILES["avatar"]["type"] != "image/png") {
-   $avatarErr = "khong dung dinh dang";
-}
-$role_type = isset($_POST['role_type']) ? $_POST['role_type'] : '';
-$team = isset($_POST['team']) ? $_POST['team'] : '';
-$position = isset($_POST['position']) ? $_POST['position'] : '';
-?>
