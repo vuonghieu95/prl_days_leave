@@ -4,12 +4,5 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="jquery-1.8.2" level="application" />
-    <orderEntry type="library" name="jquery-ui" level="application" />
-    <orderEntry type="library" name="jquery-1.12.4" level="application" />
-    <orderEntry type="library" name="bootstrap-datetimepicker" level="application" />
-    <orderEntry type="library" name="bootstrap-datepicker" level="application" />
-    <orderEntry type="library" name="bootstrap-datetimepicker.pt-BR" level="application" />
-    <orderEntry type="library" name="select2" level="application" />
   </component>
 </module>

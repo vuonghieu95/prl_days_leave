@@ -9,12 +9,11 @@ class NotFoundController extends BaseController
     public function __construct()
     {
         parent::__construct();
-//        require_once(getRootPath('model/DateModel.php'));
     }
 
     public function index()
     {
-        echo'not found';die();
+        echo'not found';
         $this->loadView('admin.no');
     }
 

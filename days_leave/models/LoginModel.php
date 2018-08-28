@@ -7,7 +7,7 @@ class LoginModel extends BaseModel
     {
         $conn = $this->connect();
         try {
-            $sql = "Select * from users where email = :email and password = :password  and users.del_flag=0 ";
+            $sql = "Select * from users where email = :email and password = :password  and users.del_flag='".getConfig('del_flag_off')."' ";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->bindParam(':password', $password, PDO::PARAM_STR);

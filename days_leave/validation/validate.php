@@ -59,8 +59,4 @@ class Validate
         }
     }
 
-    public function validateParams($params)
-    {
-
-    }
 }

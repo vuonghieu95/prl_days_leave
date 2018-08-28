@@ -56,6 +56,6 @@
     </table>
 
     <?php
-    include_once(getRootPath('models/pagination_days.php'));
+    include_once(getRootPath('models/pagination/pagination_days.php'));
     include_once(getRootPath('views/pagination.php')) ?>
 </div>

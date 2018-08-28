@@ -3,6 +3,7 @@
 /**
  * Class BaseModel
  */
+include_once(getRootPath('config/config.php'));
 
 class BaseModel
 {
@@ -10,11 +11,8 @@ class BaseModel
 
     public function connect()
     {
-        $host = getConfig('env')['host'];
-        $dbname = getConfig('env')['dbname'];
-        $username = getConfig('env')['username'];
-        $password = getConfig('env')['password'];
-        $conn = new PDO('mysql:host=' . $host . ';dbname=' . $dbname . '', $username, $password);
+        $conn = new PDO('mysql:host=' . getConfig('env')['host'] . ';dbname=' . getConfig('env')['dbname'] . '',
+            getConfig('env')['username'], getConfig('env')['password']);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         return $conn;
     }
@@ -59,36 +57,23 @@ class BaseModel
     public function delete($id)
     {
         $data['upd_id'] = $_SESSION['login']->id;
-        $sql = "Update $this->table set $this->table.del_flag=1, $this->table.upd_id = '" . $data['upd_id'] . "'
+        $sql = "Update $this->table set $this->table.del_flag='" . getConfig('del_flag_on') . "', $this->table.upd_id = '" . $data['upd_id'] . "'
                 where $this->table.id= $id";
         $conn = $this->connect();
         $stmt = $conn->prepare($sql);
         return $stmt->execute();
     }
 
-    public function pagination()
+    public function pagination($sql)
     {
         $conn = $this->connect();
         $conn->exec("set names utf8");
-        $display = 5;
-        if (isset($_GET['key'])) {
-            $search = $_GET['key'];
-        } elseif (isset($_GET['manager'])) {
-            $search = 'manager';
-        } elseif (isset($_GET['leader'])) {
-            $search = 'leader';
-        } elseif (isset($_GET['member'])) {
-            $search = 'member';
-        } else {
-            $search = '';
-        }
-        $result = $conn->query("Select users.id as total from users left join teams on users.team_id = teams.id left join positions on users.position_id = positions.id where users.del_flag =0 
-                                  and (users.name LIKE '%$search%' || users.email Like '%$search%' || users.phone LIKE '%$search%' || positions.name LIKE '%$search%')
-                                  order by users.id DESC ");
+        $display = getConfig('display');
+        $result = $conn->query($sql);
         $total_rows = $result->rowCount();
         $curr_page = isset($_GET['page']) ? $_GET['page'] : 1;
         $offset = (($curr_page - 1) * $display);
-        $total_pages = ceil($total_rows / 5);
+        $total_pages = ceil($total_rows / $display);
         $start = 1;
         $end = $total_pages;
     }

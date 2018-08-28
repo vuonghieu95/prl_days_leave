@@ -1,6 +1,10 @@
 <?php
 include_once(getRootPath('controllers/base/BaseController.php'));
 
+require_once(getRootPath('models/DateModel.php'));
+
+require_once(getRootPath('models/TeamModel.php'));
+
 class DaysLeaveController extends BaseController
 {
     public function __construct()

@@ -122,6 +122,31 @@ class AdminController extends BaseController
         }
         return;
     }
+    public function add()
+    {
+        $avatar = '';
+        $name = isset($_POST['name']) ? $_POST['name'] : '';
+        $password = md5(isset($_POST['password']) ? $_POST['password'] : '');
+        $email = isset($_POST['email']) ? $_POST['email'] : '';
+        if (!empty($_FILES['avatar']['name'])) {
+            $avatar = ('/views/img/' . $_FILES['avatar']['name']);
+        } elseif (isset($_SESSION['tmp_avatar']) ? $_SESSION['tmp_avatar'] : '') {
+            $avatar = ($_SESSION['tmp_avatar']);
+        }
+        $phone = isset($_POST['phone']) ? $_POST['phone'] : '';
+        $role_type = isset($_POST['role_type']) ? $_POST['role_type'] : '';
+        $team = isset($_POST['team']) ? $_POST['team'] : '';
+        $date = strtotime(isset($_POST['work_start_date']) ? $_POST['work_start_date'] : '');
+        $work_start = date("Y-m-d H:i:s", $date);
+        $position = isset($_POST['position']) ? $_POST['position'] : '';
+        $addUsersModel = new UsersModel();
+        $param = [
+            'name' => $name, 'password' => $password, 'email' => $email, 'avatar' => $avatar, 'phone' => $phone,
+            'role_type' => $role_type, 'team_id' => $team, 'work_start_date' => $work_start, 'position_id' => $position
+        ];
+
+        $addUsersModel->insert($param);
+    }
 
     protected function _addTeamProcess()
     {

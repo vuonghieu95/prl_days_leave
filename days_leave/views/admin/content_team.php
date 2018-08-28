@@ -73,7 +73,7 @@ include_once(getRootPath('views/layouts/html.php'));
                 <?php endforeach; ?>
             <?php endif; ?>
         </table>
-        <?php include_once(getRootPath('models/pagination.php'));
+        <?php include_once(getRootPath('models/pagination/pagination.php'));
         include_once(getRootPath('views/pagination.php')) ?>
     </div>
 </div>

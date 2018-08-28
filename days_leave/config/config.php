@@ -28,6 +28,6 @@ return [
         'username' => 'root',
         'password' => ''
     ],
-    'actual_link' => (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"
-
+    'actual_link' => (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]",
+    'del_flag_on' => 1, 'del_flag_off' => 0, 'display' => 5
 ];

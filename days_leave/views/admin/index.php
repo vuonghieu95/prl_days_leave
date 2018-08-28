@@ -102,7 +102,7 @@ include_once(getRootPath('views/layouts/html.php'));
             </table>
 
             <?php
-            include_once(getRootPath('models/pagination.php'));
+            include_once(getRootPath('models/pagination/pagination.php'));
             include_once(getRootPath('views/pagination.php')) ?>
         </div>
     </div>
